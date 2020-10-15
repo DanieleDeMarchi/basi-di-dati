@@ -43,6 +43,7 @@ BEGIN
             (cfdipendente, idcinema, mansione, inizio, fine)
         VALUES
             (old.cfdipendente, old.idcinema, old.mansione, old.inizio, current_date);
+     END IF;
 
     return null;
 END;
