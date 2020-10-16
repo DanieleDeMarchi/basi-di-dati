@@ -13,7 +13,7 @@ public class Utils {
 
 	public static final String MESI = "ABCDEHLMPRST";
 	public static final String[] nazioni = {"USA", "ITA", "ENG", "JPN", "FRA", "GER", "POR", "SPA", "NOR", "SWE", "DEN", "FIN", "CHN", "IND", "AUS", "MEX", "BRA", "SWI", "GRE", "RUS", "NKO", "SKO", "POL", "EST", "LIT", "HUN"};
-	public static final String[] mansioni = {"Biglietti", "Bar", "Sale", "Tech Video", "Tech Audio", "Bagni", "Sicurezza", "Emergenze", "Controllo Tkt"};
+	public static final String[] mansioni = {"biglietti", "bar", "sale", "tech video", "tech audio", "bagni", "sicurezza", "emergenze", "check biglietti"};
 	public static final String[] ruoli = {"Protagonista", "Comparsa", "Antagonista", "Narratore", "Personaggio", "Altro"};
 	public static List<String> citta;
 	public static List<String> nomi;

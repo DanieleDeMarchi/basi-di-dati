@@ -106,16 +106,31 @@ public class Progetto {
 					statementDipendente.setString(3, Utils.telefonoRandom());
 					statementDipendente.executeUpdate();
 					int mansioni = 1 + rng.nextInt(mansioniMaxPerPersona);
-					
+
 					for (int j = 0; j < mansioni; j++) {
+						
 						int cinema_curr = 1 + rng.nextInt(cinemaTot);
-						String mansione = j==0?"manager":Utils.mansione();
+						String mansione = Utils.mansione();
+						int stipendio = 800 + rng.nextInt(1000);
+						
+						if (i < cinemaTot && j == 0) {
+							cinema_curr = 1 + i;
+							mansione = "manager";
+							stipendio = 1600 + rng.nextInt(500);
+						}
+						
 						statementMansione.setString(1, cf);
 						statementMansione.setInt(2, cinema_curr);
 						statementMansione.setString(3, mansione);
 						statementMansione.setDate(4, new Date(110 + rng.nextInt(10), 1 + rng.nextInt(11), 1 + rng.nextInt(28)));
-						statementMansione.setInt(5, 800 + rng.nextInt(1000));
-						try { statementMansione.executeUpdate(); } catch (Exception ahkdba) {if (j==0) ahkdba.printStackTrace();}
+						statementMansione.setInt(5, stipendio);
+						try { 
+							statementMansione.executeUpdate(); 
+						} catch (Exception err_manager) {
+							if (j==0) {
+								throw new RuntimeException(err_manager);
+							}
+						}
 					}
 				} catch (SQLException sqle) {
 					throw new RuntimeException(sqle);
