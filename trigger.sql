@@ -508,7 +508,7 @@ AS $BODY$
 BEGIN
     if new.totale_dipendenti <> 0 THEN
         raise notice 'Il campo totale dipendenti deve essere inserito a 0. Viene poi automaticamente incrementato o decrementato.';
-        new.totale_dipendenti := 0
+        new.totale_dipendenti := 0;
         raise notice 'Il campo totale dipendenti è stato impostato a zero';
         return new;
     else
@@ -537,7 +537,7 @@ AS $BODY$
 BEGIN
     if new.proiezioni_totali <> 0 THEN
         raise notice 'Il campo proiezioni_totali deve essere inserito a 0. Viene poi automaticamente incrementato o decrementato.';
-        new.proiezioni_totali := 0
+        new.proiezioni_totali := 0;
         raise notice 'Il campo proiezioni_totali è stato impostato a zero';
         return new;
     else
@@ -587,7 +587,7 @@ PROCEDURE prevent_update_proiezioni_totali
 ----------------------------------------------------------------------
 ---Trigger per impedire la modifica di torale_dipendenti in cinema
 
-CREATE FUNCTION prevent_update_totale_dipendenti
+CREATE FUNCTION prevent_update_totale_dipendenti()
     RETURNS trigger
     LANGUAGE 'plpgsql'
 AS $BODY$

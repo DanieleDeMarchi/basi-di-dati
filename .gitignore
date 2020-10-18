@@ -1,2 +1,10 @@
+
+riempimento_auto/bin
 query.sql
 ~*
+
+riempimento_auto/.settings/org.eclipse.jdt.core.prefs
+
+riempimento_auto/.project
+
+riempimento_auto/.classpath
