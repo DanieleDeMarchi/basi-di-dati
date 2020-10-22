@@ -19,7 +19,7 @@ incassoFilm <- dbGetQuery(con, "SELECT * FROM best_box_office_all")
 barplot(table(incassoFilm$anno),
         main="Film per anno",
         xlab="Anno",ylab="Numero film",
-        ylim = c(0,15),
+        ylim = c(0,8),
         cex.names = 0.7
 )
 
@@ -58,4 +58,17 @@ plot(proiezioniPerMese$mese_proiezione, proiezioniPerMese$tot, xaxt="n", type="l
      main="Proiezioni per mese",
      xlab="Data",ylab="Numero proiezioni")
 axis.Date(1, at=seq(min(proiezioniPerMese$mese_proiezione), max(proiezioniPerMese$mese_proiezione), by="months"), format="%m-%Y")
+
+#proiezione per giorno della settimana
+proiezioniPerGiorno<- dbGetQuery(con, "SELECT count (*) as tot, extract(isodow from proiezioni.datetime::date) - 1 as giorno
+                                FROM proiezioni
+                                Group by giorno
+								                Order by giorno")
+
+proiezioniPerGiorno$giorno <- c("Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom")
+barplot(proiezioniPerGiorno$tot, names.arg=proiezioniPerGiorno$giorno,
+        main="Proiezioni per giorno settimanale",
+        xlab="Giorno", ylab="Proiezione",
+        ylim = range(0,max(proiezioniPerGiorno$tot))
+        )
 
