@@ -1,2 +1,5 @@
 query.sql
 ~*
+.Rproj.user
+R/.*
+R/R.Rproj
