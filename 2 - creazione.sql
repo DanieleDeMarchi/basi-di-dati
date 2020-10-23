@@ -1,8 +1,3 @@
-ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON TABLES TO "Simone";
-ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON TABLES TO "Daniele";
-ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON SEQUENCES TO "Simone";
-ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON SEQUENCES TO "Daniele";
-
 create domain codfis as varchar(16);
 create domain stars as integer check (value >= 0 AND value <= 10);
 
@@ -26,6 +21,7 @@ create table film (
     id serial primary key,
     durata int not null,
     regia varchar(255) not null,
+    genere varchar(255) not null,
     anno int not null,
     rating stars,
     titolo varchar(255) not null,

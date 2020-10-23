@@ -173,22 +173,23 @@ public class Progetto {
 		Counter count = new Counter();
 		try (BufferedReader in = new BufferedReader(new FileReader(new File("titoli_orignali.txt")))) {
 
-			PreparedStatement statement = conn.prepareStatement("INSERT INTO film(durata, regia, anno, rating, titolo, nazione, sequel_di, proiezioni_totali) VALUES(?, ?, ?, ?, ?, ?, ?, ?);");
+			PreparedStatement statement = conn.prepareStatement("INSERT INTO film(durata, regia, genere, anno, rating, titolo, nazione, sequel_di, proiezioni_totali) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);");
 
 			in.lines().limit(max).forEach(titolo -> {
 				try {
 					statement.setInt(1, 30+rng.nextInt(200));
 					statement.setString(2, "regista_generico_"+count.times);
-					statement.setInt(3, 1930 + rng.nextInt(91));
-					statement.setInt(4, rng.nextInt(5) + 1);
-					statement.setString(5, titolo);
-					statement.setString(6, Utils.nazioni[rng.nextInt(Utils.nazioni.length)]);
+					statement.setString(3, Utils.genereRandom());
+					statement.setInt(4, 1930 + rng.nextInt(91));
+					statement.setInt(5, rng.nextInt(5) + 1);
+					statement.setString(6, titolo);
+					statement.setString(7, Utils.nazioni[rng.nextInt(Utils.nazioni.length)]);
 					if (rng.nextInt(40)==0 && count.times > 5) {
-						statement.setInt(7, count.times - 3);
+						statement.setInt(8, count.times - 3);
 					} else {
-						statement.setNull(7, java.sql.Types.INTEGER);
+						statement.setNull(8, java.sql.Types.INTEGER);
 					}
-					statement.setInt(8, 0);
+					statement.setInt(9, 0);
 					statement.executeUpdate();
 				} catch (SQLException sqle) {
 					throw new RuntimeException(sqle);
