@@ -1,3 +1,9 @@
+#installare le librerie se non installate
+#install.packages("getPass")
+#install.packages("RPostgreSQL")
+
+
+
 library("RPostgreSQL")
 library(getPass)
 
