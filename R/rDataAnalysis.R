@@ -1,4 +1,5 @@
 library("RPostgreSQL")
+library(getPass)
 
 drv <- dbDriver("PostgreSQL")
 
@@ -8,7 +9,7 @@ con <- dbConnect(
   host="zabi94.ddns.net",
   port=5432,
   user="Daniele",
-  password="dellamonica_2020"
+  password = getPass("Enter Password:")
 )
 
 
