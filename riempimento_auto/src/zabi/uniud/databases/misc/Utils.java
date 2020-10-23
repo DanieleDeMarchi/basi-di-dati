@@ -15,6 +15,7 @@ public class Utils {
 	public static final String[] nazioni = {"USA", "ITA", "ENG", "JPN", "FRA", "GER", "POR", "SPA", "NOR", "SWE", "DEN", "FIN", "CHN", "IND", "AUS", "MEX", "BRA", "SWI", "GRE", "RUS", "NKO", "SKO", "POL", "EST", "LIT", "HUN"};
 	public static final String[] mansioni = {"biglietti", "bar", "sale", "tech video", "tech audio", "bagni", "sicurezza", "emergenze", "check biglietti"};
 	public static final String[] ruoli = {"Protagonista", "Comparsa", "Antagonista", "Narratore", "Personaggio", "Altro"};
+	public static final String[] genere = {"Azione e Avventura", "Fantascienza", "Commedia", "Romantico", "Horror", "Thriller", "Drammatico", "Documentario", "Altro"};
 	public static List<String> citta;
 	public static List<String> nomi;
 	
@@ -88,6 +89,10 @@ public class Utils {
 
 	public static String cittaRandom() {
 		return Utils.citta.get(Progetto.rng.nextInt(Utils.citta.size()));
+	}
+
+	public static String genereRandom() {
+		return Utils.genere[Progetto.rng.nextInt(Utils.genere.length)];
 	}
 
 }

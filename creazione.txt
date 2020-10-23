@@ -26,6 +26,7 @@ create table film (
     id serial primary key,
     durata int not null,
     regia varchar(255) not null,
+    genere varchar(255) not null,
     anno int not null,
     rating stars,
     titolo varchar(255) not null,
