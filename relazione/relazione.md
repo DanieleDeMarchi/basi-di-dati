@@ -57,9 +57,267 @@ Dei punti salienti notevoli sono, per esempio:
  
 ### Analisi delle ridondanze e campi derivati
 
-<-- Basterebbe incollare e commentare le tabelle già prodotte nella repo github --->
-TODO 
+È stata innanzitutto redatta la tabella dei volumi, secondo dei numeri ipotizzati secondo quello che al momento poteva sembrare verosimile.
 
+
+<style>
+table, th, td {
+  border: 1px solid black;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 6px;
+}
+</style>
+
+| Concetto          | Tipo | Volume |
+| ----------------- | ---- | ------ |
+| Cinema            | E    | 5      |
+| Appartiene        | R    | 25     |
+| Sala              | E    | 25     |
+| Dipendente        | E    | 250    |
+| Manager           | E    | 5      |
+| Gestisce          | R    | 5      |
+| Impieghi correnti | R    | 100    |
+| Storico impieghi  | R    | 400    |
+| Proiezione        | E    | 35,000 |
+| Proiettato in     | R    | 35,000 |
+| Film              | E    | 500    |
+| Proiezione di     | R    | 35,000 |
+| Attore            | E    | 2,000  |
+| Partecipa         | R    | 6,000  |
+| Sequel di         | R    | 20     |
+
+Si procede col calcolare, per ogni dato ridondante, se sia o no opportuno inserirlo.
+
+<P style="page-break-before: always">
+
+<---------------------------------------------------------------------- x ---------------------------------------------------------------------->
+
+#### Dipendenti totali nella tabella cinema:<br>
+
+| Operazione                     | Frequenza      |
+| ------------------------------ | -------------- |
+| Aggiunta relazione "lavora in" | 10 a settimana |
+| Stampare tutti dati cinema     | 35 a settimana |
+
++ Con ridondanza:<br>
+
+| Operazione     | Concetto  | Accessi | Tipo        |
+| -------------- | --------- | ------- | ----------- |
+| Op 1           | Lavora in | 1       | S           |
+|                | Cinema    | 1       | S           |
+|                |           |         |             |
+| Op 2           | Cinema    | 1       | L           |
+
+<br>Totale: 75 accessi a settimana
+
++ Senza ridondanza:<br>
+
+| Operazione       | Concetto  | Accessi | Tipo  |
+| ---------------- | --------- | ------- | ----- |
+| Op 1             | Lavora in | 1       | S     |
+|                  |           |         |       |
+| Op 2             | Cinema    | 1       | L     |
+|                  | Lavora in | 20      | L     |
+
+<br>Totale: 75 accessi a settimana
+
+<---------------------------------------------------------------------- x ---------------------------------------------------------------------->
+<P style="page-break-before: always">
+
+#### Proiezioni dei film:
+
+<br>
+
+| Operazione                     | Frequenza     |
+| ------------------------------ | ------------- |
+| Aggiunta proiezione di un film | 100 al giorno |
+| Stampa tutti i dati di un film | 25 al giorno  |
+
++ Con ridondanza:<br>
+
+| Operazione     | Concetto   | Accessi | Tipo      |
+| -------------- | ---------- | ------- | --------- |
+| Op 1           | Proiezione | 1       | S         |
+|                | Proiettato | 1       | S         |
+|                | Film       | 1       | S         |
+|                |            |         |           |
+| Op 2           | Film       | 1       | L         |
+
+<br>Totale: 625 accessi al giorno
+
++ Senza ridondanza:<br>
+
+| Operazione       | Concetto   | Accessi | Tipo        |
+| ---------------- | ---------- | ------- | ----------- |
+| Op 1             | Proiezione | 1       | S           |
+|                  | Proiettato | 1       | S           |
+|                  |            |         |             |
+| Op 2             | Film       | 1       | L           |
+|                  | Proiettato | 70      | L           |
+
+<br>Totale: 2,175 accessi al giorno
+
+<---------------------------------------------------------------------- x ---------------------------------------------------------------------->
+<P style="page-break-before: always">
+
+#### Partecipazione degli attori:
+
+<br>
+
+| Operazione                   | Frequenza       |
+| ---------------------------- | --------------- |
+| Aggiunta relazione partecipa | 120 a settimana |
+| Stampa tutti dati attore     | 70 a settimana  |
+
++ Con ridondanza:<br>
+
+| Operazione     | Concetto  | Accessi | Tipo        |
+| -------------- | --------- | ------- | ----------- |
+| Op 1           | Partecipa | 1       | S           |
+|                | Film      | 1       | S           |
+|                |           |         |             |
+| Op 2           | Attore    | 1       | L           |
+
+<br>Totale: 550 accessi a settimana
+
++ Senza ridondanza:<br>
+
+| Operazione       | Concetto  | Accessi | Tipo        |
+| ---------------- | --------- | ------- | ----------- |
+| Op 1             | Partecipa | 1       | S           |
+|                  |           |         |             |
+| Op 2             | Attore    | 1       | L           |
+|                  | Partecipa | 3       | L           |
+
+<br>Totale: 520 accessi a settimana<br>
+
+<---------------------------------------------------------------------- x ---------------------------------------------------------------------->
+<P style="page-break-before: always">
+
+#### Capienza della sala:
+
+*Ipotizzando un update ad ogni vendita di biglietto, e in media 80 biglietti venduti per proiezione, venduti 2 per volta.  
+Quindi totale 40 update per proiezione.  
+Se invece il dato dei biglietti venduti non viene mai aggiornato o, raramente aggiornato, la ridondanza non ha senso.*
+<br>
+
+| Operazione                            | Frequenza |
+| ------------------------------------- | --------- |
+| Aggiunta proiezione con relativa sala | 100 al giorno      |
+| Update biglietti venduti              | 4,000 al giorno    |
+
++ Con ridondanza:<br>
+
+| Operazione     | Concetto      | Accessi | Tipo      |
+| -------------- | ------------- | ------- | --------- |
+| Op 1           | Sala          | 1       | L         |
+|                | Proiezione    | 1       | S         |
+|                | Proiettato in | 1       | S         |
+|                |               |         |           |
+| Op 2           | Proiezione    | 1       | S         |
+
+<br>Totale: 8,500 accessi al giorno
+
++ Senza ridondanza:<br>
+
+| Operazione       | Concetto      | Accessi | Tipo      |
+| ---------------- | ------------- | ------- | --------- |
+| Op 1             | Proiezione    | 1       | S         |
+|                  | Proiettato in | 1       | S         |
+|                  |               |         |           |
+| Op 2             | Proiezione    | 1       | S         |
+|                  | Proiettato in | 1       | L         |
+|                  | Sala          | 1       | L         |
+
+<br>Totale: 16,400 accessi al giorno
+
+<---------------------------------------------------------------------- x ---------------------------------------------------------------------->
+<P style="page-break-before: always">
+
+#### Incasso totale per film:
+*Ipotizzando un update ad ogni vendita di biglietto*
+<br>
+
+| Operazione                                        | Frequenza          |
+| ------------------------------------------------- | ------------------ |
+| Aggiunta proiezione con relativo film             | 100 al giorno |
+| Update biglietti venduti con aumento incasso film | 4,000 al giorno |
+| Stampare dati film, compreso incasso              | 25 al giorno |
+
++ Con ridondanza:<br>
+
+| Operazione     | Concetto      | Accessi | Tipo      |
+| -------------- | ------------- | ------- | --------- |
+| Op 1           | Proiezione    | 1       | S         |
+|                | Proiezione di | 1       | S         |
+|                |               |         |           |
+| Op 2           | Proiezione    | 1       | S         |
+|                | Proiezione di | 1       | L         |
+|                | Film          | 1       | S         |
+|                |               |         |           |
+| Op 3           | Film          | 1       | L         |
+
+
+<br>Totale: 20,425 accessi al giorno
+
++ Senza ridondanza:<br>
+
+| Operazione       | Concetto      | Accessi | Tipo      |
+| ---------------- | ------------- | ------- | --------- |
+| Op 1             | Proiezione    | 1       | S         |
+|                  | Proiezione di | 1       | S         |
+|                  |               |         |           |
+| Op 2             | Proiezione    | 1       | S         |
+|                  |               |         |           |
+| Op 3             | Film          | 1       | L         |
+|                  | Proiezione di | 70      | L         |
+|                  | Proiezione    | 70      | L         |
+
+<br>Totale: 11,925 accessi al giorno
+
+<---------------------------------------------------------------------- x ---------------------------------------------------------------------->
+<P style="page-break-before: always">
+
+#### Dato biglietti venduti raramente modificato:
+<br>
+
+| Operazione                                              | Frequenza          |
+| ------------------------------------------------------- | ------------------ |
+| Aggiunta proiezione con relativo film e aumento incasso | 100 al giorno |
+| Stampare dati film, compreso incasso                    | 25 al giorno |
+
++ Con ridondanza:<br>
+
+| Operazione     | Concetto      | Accessi | Tipo      |
+| -------------- | ------------- | ------- | --------- |
+| Op 1           | Proiezione    | 1       | S         |
+|                | Proiezione di | 1       | S         |
+|                | Film          | 1       | S         |
+|                |               |         |           |
+| Op 2           | Film          | 1       | L         |
+|                |               |         |           |
+
+<br>Totale: 625 accessi al giorno
+
++ Senza ridondanza:<br>
+
+ | Operazione       | Concetto      | Accessi | Tipo      |
+ | ---------------- | ------------- | ------- | --------- |
+ | Op 1             | Proiezione    | 1       | S         |
+ |                  | Proiezione di | 1       | S         |
+ |                  |               |         |           |
+ | Op 2             | Film          | 1       | L         |
+ |                  | Proiezione di | 70      | L         |
+ |                  | Proiezione    | 70      | L         |
+ 
+  <br>Totale: 3,925 accessi al giorno
+
+  <---------------------------------------------------------------------- x ---------------------------------------------------------------------->
+  <P style="page-break-before: always">
 ### Eliminazione delle generalizzazioni
 
 Nel modello ER è presente una singola generalizzazione.  
@@ -118,7 +376,7 @@ Sono state create le seguenti tabelle:
 
 ### Scelte implementative
 
-Nelle tabelle riguardanti gli impieghi la scelta della chiave primaria è stata dettata dal fatto che, secondo il modello da noi scelto, un dipendente che ha più mansioni all'interno dello stesso cinema figura più volte nei dati delle tabelle. In questo modo per gli impieghi correnti un dato dipendente può svolgere una mansione solo una volta in un dato cinema in ogni dato istante. Infatti, se dovesse essere ri-assunto in futuro, le mansioni vecchie saranno state eliminate dalla tabella e trasferite in *storico_impieghi*, dove invece anche la data di inizio fa fede per la chiave iniziale.
+Nelle tabelle riguardanti gli impieghi la scelta della chiave primaria è stata dettata dal fatto che, secondo il modello da noi scelto, un dipendente che ha più mansioni all'interno dello stesso cinema figura più volte nei dati delle tabelle. In questo modo per gli impieghi correnti un dato dipendente può svolgere una mansione solo una volta in un dato cinema in ogni dato istante. Infatti, se dovesse essere ri-assunto in futuro, le mansioni vecchie saranno state eliminate dalla tabella e trasferite in *storico_impieghi*, dove invece anche la data di inizio fa fede per la chiave primaria.
 
 ### Indici 
 
@@ -139,4 +397,11 @@ Era stata considerata l'opzione di inserire alcuni indici su alcune chiavi che v
 ## Analisi dei dati
 ---
 
-TODO
+Sono stati prodotti alcuni grafici esemplificativi per alcune query ipotizzate attraverso il linguaggio R.  
+I dati contenuti nella base di dati al momento della loro raccolta sono generati automaticamente e casualmente attraverso il programma citato in precedenza, non ci sono dunque particolari distribuzioni, per esempio, nella quantità di film per anno, o aumenti nell'incasso al botteghino negli anni, nonostante il rincaro dei prezzi dei biglietti e l'aumento contemporaneo delle loro vendite.
+
+![stipendio_per_mansione.jpeg](stipendio_per_mansione.jpeg)
+![dipendenti_per_mansione.jpeg](dipendenti_per_mansione.jpeg)
+![proiezioni_per_mese.jpeg](proiezioni_per_mese.jpeg)
+![incasso_per_anno.jpeg](incasso_per_anno.jpeg)
+![film_per_anno.jpeg](film_per_anno.jpeg)
