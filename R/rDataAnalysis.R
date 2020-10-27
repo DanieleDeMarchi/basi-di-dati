@@ -12,9 +12,9 @@ drv <- dbDriver("PostgreSQL")
 con <- dbConnect(
   drv,
   dbname="laboratorio",
-  host="zabi94.ddns.net",
-  port=5432,
-  user="Daniele",
+  host="",
+  port=,
+  user="",
   password = getPass("Enter Password:")
 )
 
