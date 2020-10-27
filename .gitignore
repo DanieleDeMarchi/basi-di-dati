@@ -1,16 +1,8 @@
-
 riempimento_auto/bin
-query.sql
 ~*
-<<<<<<< HEAD
 .Rproj.user
 R/.*
 R/R.Rproj
-=======
-
 riempimento_auto/.settings/org.eclipse.jdt.core.prefs
-
 riempimento_auto/.project
-
 riempimento_auto/.classpath
->>>>>>> be492b8fef96609bb3b5cdff95d7ca31a381871f
