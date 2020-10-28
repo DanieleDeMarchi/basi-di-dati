@@ -34,13 +34,6 @@ WHERE EXISTS
             (SELECT * FROM film WHERE sequel_di=F3.id)
 
 
-
---- Dati di tutti i cinema compreso il nome del manager   OK
-SELECT c1.citta, c1.nome, c1.telefono, c1.totale_dipendenti, m.nome
-FROM cinema as c1, dipendenti as m
-WHERE EXISTS (SELECT * FROM impieghi_correnti
-                WHERE mansione='manager' AND cfdipendente=m.cf AND idcinema=c1.id)
-
 --- attori che hanno partecipato esattamente agli stessi film OK
 --- un attore deve aver partecipato almeno a un film
 SELECT A1.cf as codfis_attore1, A1.nome as nome_attore1, A2.cf as codfis_attore2, A2.nome as nome_attore2

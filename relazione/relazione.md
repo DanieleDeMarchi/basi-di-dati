@@ -481,19 +481,6 @@ WHERE EXISTS
             )
 </pre>
 
-#### Dati del cinema con manager
-
-<pre>
-SELECT c1.citta, c1.nome, c1.telefono, c1.totale_dipendenti, m.nome
-FROM cinema as c1, dipendenti as m
-WHERE EXISTS 
-    (
-        SELECT * 
-        FROM impieghi_correnti
-        WHERE mansione='manager' AND cfdipendente=m.cf AND idcinema=c1.id
-    )
-</pre>
-
 <P style="page-break-before: always">
 #### Attori che hanno partecipato esattamente agli stessi film
 
