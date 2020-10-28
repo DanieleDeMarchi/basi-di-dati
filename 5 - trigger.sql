@@ -141,12 +141,12 @@ BEGIN
     FROM film
     WHERE id=new.idfilm;
 
-    fine_nuova_proiezione := new.datetime + (durata_film * interval '1 minute') ;
+    fine_nuova_proiezione := new.orario + (durata_film * interval '1 minute') ;
 
     if  (TG_OP = 'INSERT') then
             PERFORM * FROM proiezioni WHERE new.idsala=idsala 
                                         AND new.idcinema=idcinema 
-                                        AND (new.datetime, fine_nuova_proiezione + (30 * interval '1 minute')) OVERLAPS (datetime, fine_proiezione + (30 * interval '1 minute'));
+                                        AND (new.orario, fine_nuova_proiezione + (30 * interval '1 minute')) OVERLAPS (orario, fine_proiezione + (30 * interval '1 minute'));
             IF FOUND THEN
                 raise notice 'Esiste già un film in proiezione nella stesso cinema,sala alla stessa ora';
                 return null;
@@ -157,7 +157,7 @@ BEGIN
             PERFORM * FROM proiezioni WHERE new.id<>old.id 
                                         AND new.idsala=idsala 
                                         AND new.idcinema=idcinema 
-                                        AND (new.datetime, fine_nuova_proiezione + (30 * interval '1 minute')) OVERLAPS (datetime, fine_proiezione + (30 * interval '1 minute'));
+                                        AND (new.orario, fine_nuova_proiezione + (30 * interval '1 minute')) OVERLAPS (orario, fine_proiezione + (30 * interval '1 minute'));
             IF FOUND THEN
                 raise notice 'Esiste già un film in proiezione nella stesso cinema,sala alla stessa ora';
                 return null;
@@ -194,7 +194,7 @@ BEGIN
     FROM film
     WHERE id=new.idfilm;
 
-    new.fine_proiezione := new.datetime + (durata_film * interval '1 minute') ;
+    new.fine_proiezione := new.orario + (durata_film * interval '1 minute') ;
 
     return new;
 END;

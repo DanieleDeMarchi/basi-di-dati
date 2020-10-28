@@ -32,10 +32,10 @@ CREATE OR REPLACE VIEW public.proiezioni_future AS
       p1.costo,
       p1.idsala,
       p1.idcinema,
-      p1.datetime,
+      p1.orario,
       f.durata
       FROM proiezioni p1 JOIN film f ON f.id = p1.idfilm
-      WHERE p1.datetime::date > CURRENT_DATE;
+      WHERE p1.orario::date > CURRENT_DATE;
 
 CREATE VIEW proiezioni_odierne AS
       SELECT p1.id AS id_proiezione,
@@ -44,7 +44,7 @@ CREATE VIEW proiezioni_odierne AS
       p1.costo,
       p1.idsala,
       p1.idcinema,
-      p1.datetime,
+      p1.orario,
       f.durata
       FROM proiezioni p1 JOIN film f ON f.id = p1.idfilm
-      WHERE p1.datetime::date = CURRENT_DATE;
+      WHERE p1.orario::date = CURRENT_DATE;
