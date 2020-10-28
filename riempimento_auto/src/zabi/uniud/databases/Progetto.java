@@ -19,7 +19,7 @@ import zabi.uniud.databases.misc.Utils;
 public class Progetto {
 
 	public static final Random rng = new Random();
-	public static String url = "jdbc:postgresql://192.168.1.57:5432/laboratorio"; //Lanciare con argomento JVM -Dserver="ilMioServer.com:porta/ilMioDB"
+	public static String url = "jdbc:postgresql://192.168.1.57:15432/laboratorio"; //Lanciare con argomento JVM -Dserver="ilMioServer.com:porta/ilMioDB"
 	public static final Properties props = new Properties();
 
 
@@ -53,7 +53,7 @@ public class Progetto {
 		System.out.println("Sale");
 		try {
 			PreparedStatement statement_sala = conn.prepareStatement("INSERT INTO sale VALUES(?, ?, ?, ?);");
-			PreparedStatement statement_proj = conn.prepareStatement("INSERT INTO proiezioni(costo, vendite, datetime, idfilm, idsala, idcinema, capienza_sala, fine_proiezione) VALUES(?, ?, ?, ?, ?, ?, ?, ?);");
+			PreparedStatement statement_proj = conn.prepareStatement("INSERT INTO proiezioni(costo, vendite, orario, idfilm, idsala, idcinema, capienza_sala, fine_proiezione) VALUES(?, ?, ?, ?, ?, ?, ?, ?);");
 			for (int cinema = 1; cinema <= cinema_tot; cinema++) {
 				int saleDelCinema = 1 + rng.nextInt(max);
 				for (int sala = 0; sala < saleDelCinema; sala++) {

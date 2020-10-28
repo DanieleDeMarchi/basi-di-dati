@@ -386,7 +386,7 @@ Sono state create le seguenti tabelle:
 - *sale*(<u>numerosala</u>, *<u>idcinema</u>*, superficie, capienza)
 - *film*(<u>id</u>, durata, regia, genere, anno, rating, titolo, nazione, *sequel_di*, **proiezioni_totali**)
 - *attori*(<u>cf</u>, nome)
-- *proiezioni*(<u>id</u>, costo, vendite, datetime, *idfilm*, *idsala*, *idcinema*, **capienza_sala**, **fine_proiezione**)
+- *proiezioni*(<u>id</u>, costo, vendite, orario, *idfilm*, *idsala*, *idcinema*, **capienza_sala**, **fine_proiezione**)
 - *dipendenti*(<u>cf</u>, nome, telefono)
 - *impieghi_correnti*(<u>*cfdipendente*</u>, <u>*idcinema*</u>, <u>mansione</u>, inizio, stipendio)
 - *storico_impieghi*(<u>*cfdipendente*</u>, <u>*idcinema*</u>, <u>mansione</u>, <u>inizio</u>, <u>fine</u>)

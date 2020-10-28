@@ -30,8 +30,6 @@ create table film (
     proiezioni_totali int not null
 );
 
-
-
 create table attori (
     cf codfis primary key,
     nome varchar(255) not null
@@ -41,7 +39,7 @@ create table proiezioni (
     id serial primary key,
     costo real not null,
     vendite int not null,
-    datetime timestamp not null,
+    orario timestamp not null,
     idfilm int not null references film,
     idsala int not null,
     idcinema int not null,

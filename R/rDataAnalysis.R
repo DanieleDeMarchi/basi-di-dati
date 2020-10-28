@@ -55,9 +55,9 @@ boxplot(mansioni$stipendio ~ mansioni$mansione,
         ) 
 
 #Proiezioni per mese
-proiezioniPerMese <- dbGetQuery(con, "SELECT count (*) as tot, date_trunc('month', datetime) as mese_proiezione
+proiezioniPerMese <- dbGetQuery(con, "SELECT count (*) as tot, date_trunc('month', orario) as mese_proiezione
                                 FROM proiezioni
-                                WHERE datetime > '2018-1-1'
+                                WHERE orario > '2018-1-1'
                                 Group by mese_proiezione
 								                Order by mese_proiezione")
 
@@ -70,7 +70,7 @@ plot(proiezioniPerMese$mese_proiezione, proiezioniPerMese$tot, xaxt="n", type="l
 axis.Date(1, at=seq(min(proiezioniPerMese$mese_proiezione), max(proiezioniPerMese$mese_proiezione), by="months"), format="%m-%Y")
 
 #proiezione per giorno della settimana
-proiezioniPerGiorno<- dbGetQuery(con, "SELECT count (*) as tot, extract(isodow from proiezioni.datetime::date) - 1 as giorno
+proiezioniPerGiorno<- dbGetQuery(con, "SELECT count (*) as tot, extract(isodow from proiezioni.orario::date) - 1 as giorno
                                 FROM proiezioni
                                 Group by giorno
 								                Order by giorno")
@@ -84,9 +84,9 @@ barplot(proiezioniPerGiorno$tot, names.arg=proiezioniPerGiorno$giorno,
 
 
 #incasso per mese
-incassiPerMese <- dbGetQuery(con, "SELECT sum (vendite*costo) as tot, date_trunc('month', datetime) as mese_proiezione
+incassiPerMese <- dbGetQuery(con, "SELECT sum (vendite*costo) as tot, date_trunc('month', orario) as mese_proiezione
                                 FROM proiezioni
-                                WHERE datetime > '2018-1-1'
+                                WHERE orario > '2018-1-1'
                                 Group by mese_proiezione
 								                Order by mese_proiezione")
 
@@ -100,7 +100,7 @@ plot(incassiPerMese$mese_proiezione, incassiPerMese$tot, xaxt="n", type="l",
 axis.Date(1, at=seq(min(incassiPerMese$mese_proiezione), max(incassiPerMese$mese_proiezione), by="months"), format="%m-%Y")
 
 #incasso per giorno della settimana
-incassoPerGiorno<- dbGetQuery(con, "SELECT sum (vendite*costo) as tot, extract(isodow from proiezioni.datetime::date) - 1 as giorno
+incassoPerGiorno<- dbGetQuery(con, "SELECT sum (vendite*costo) as tot, extract(isodow from proiezioni.orario::date) - 1 as giorno
                                 FROM proiezioni
                                 Group by giorno
 								                Order by giorno")
