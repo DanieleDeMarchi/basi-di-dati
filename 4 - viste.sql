@@ -21,8 +21,7 @@ CREATE VIEW best_box_office AS
       SELECT F1.titolo, SUM(P1.costo*P1.vendite)as incasso_totale
       FROM film as F1 JOIN proiezioni as P1 ON F1.id=P1.idfilm
       GROUP BY F1.id
-      ORDER BY incasso_totale DESC
-      FETCH first 10 rows only;
+      ORDER BY incasso_totale DESC;
 
 
 CREATE OR REPLACE VIEW public.proiezioni_future AS
