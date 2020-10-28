@@ -611,15 +611,3 @@ UPDATE
 EXECUTE
 PROCEDURE prevent_update_totale_dipendenti
 ();
-
-/*
-INSERT INTO dipendenti VALUES ('1', 'pippo', '0438'), ('2', 'pluto', '0439');
-
-INSERT INTO cinema VALUES ('1', 'pippo', 'pluto', '0466', 0);
-
-INSERT INTO impieghi_correnti VALUES ('1', '1', 'manager', current_date, 1500), ('2', '1', 'aaaa', current_date, 1500);
-
-insert into film (id, durata, regia, anno, titolo, nazione, proiezioni_totali)values (1, 90, 'aaa', '2000', 'titolo1', 'ita', 0);
-
-insert into proiezioni values (0, 5, 0, current_timestamp, 1, 1, 1, 0, current_timestamp);
-*/
