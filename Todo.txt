@@ -1,0 +1,4 @@
+Rinominare proiezione.datetime in proiezione.orario
+Controllare il perchè in storico_impieghi la data di fine sia nella chiave primaria
+Popolare la tabella dello storico impieghi
+Scrivere due cose sulla scelta delle molteplicità delle relazioni
