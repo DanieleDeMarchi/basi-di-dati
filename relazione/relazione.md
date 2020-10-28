@@ -389,7 +389,7 @@ Sono state create le seguenti tabelle:
 - *proiezioni*(<u>id</u>, costo, vendite, orario, *idfilm*, *idsala*, *idcinema*, **capienza_sala**, **fine_proiezione**)
 - *dipendenti*(<u>cf</u>, nome, telefono)
 - *impieghi_correnti*(<u>*cfdipendente*</u>, <u>*idcinema*</u>, <u>mansione</u>, inizio, stipendio)
-- *storico_impieghi*(<u>*cfdipendente*</u>, <u>*idcinema*</u>, <u>mansione</u>, <u>inizio</u>, <u>fine</u>)
+- *storico_impieghi*(<u>*cfdipendente*</u>, <u>*idcinema*</u>, <u>mansione</u>, <u>inizio</u>, fine)
 
 (Sono riportate in corsivetto le chiavi esterne, in grassetto gli attributi derivati, sottolineate le parti della chiave primaria)
 

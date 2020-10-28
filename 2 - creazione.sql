@@ -69,7 +69,7 @@ create table storico_impieghi (
     mansione varchar(16) not null,
     inizio timestamp not null,
     fine timestamp not null,
-    primary key(cfdipendente, idcinema, mansione, inizio, fine)
+    primary key(cfdipendente, idcinema, mansione, inizio)
 );
 
 create table ruoli (
