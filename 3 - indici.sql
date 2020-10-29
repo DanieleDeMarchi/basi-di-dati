@@ -5,4 +5,4 @@ CREATE INDEX per_data ON proiezioni(orario);
 CREATE INDEX per_cinema ON impieghi_correnti(idcinema);
 
 --- Allo stesso modo è facile che si cerchi un dipendente per nome, piuttosto che per codice fiscale
-CREATE INDEX per_cinema ON dipendenti(nome);
+CREATE INDEX per_nome ON dipendenti(nome);
