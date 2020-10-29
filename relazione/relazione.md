@@ -48,6 +48,8 @@ Dei punti salienti notevoli sono, per esempio:
 + L’inserimento di una relazione riflessiva “Sequel di” dell’entità Film;  
 + L’inserimento di molteplici attributi derivati, discussi in seguito;  
 
+Per quanto riguarda la molteplicità delle relazioni, l'unica nota da fare riguarda la relazione "ruolo in", che contempla film senza attori (animazione, documentari...) e attori che non hanno mai recitato (debuttanti, persone che hanno solo partecipato a casting...)
+
 ![ER.jpg](ER.jpg)
 
 <P style="page-break-before: always">
