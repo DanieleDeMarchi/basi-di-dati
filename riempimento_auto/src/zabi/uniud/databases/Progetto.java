@@ -19,7 +19,7 @@ import zabi.uniud.databases.misc.Utils;
 public class Progetto {
 
 	public static final Random rng = new Random();
-	public static String url = "jdbc:postgresql://192.168.1.57:15432/laboratorio"; //Lanciare con argomento JVM -Dserver="ilMioServer.com:porta/ilMioDB"
+	public static String url = "jdbc:postgresql://192.168.1.57:5432/laboratorio"; //Lanciare con argomento JVM -Dserver="ilMioServer.com:porta/ilMioDB"
 	public static final Properties props = new Properties();
 
 
@@ -43,10 +43,21 @@ public class Progetto {
 			int cinema = inserisciCinema(100, conn);
 			inserisciDipendentiEMansioni(500, cinema, 3, conn);
 			inserisciSaleEProiezioni(16, cinema, film, conn);
+			licenziaDipendentiVecchi(conn);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
+
+	private static void licenziaDipendentiVecchi(Connection conn) {
+		try {
+			System.out.println("Storico");
+			conn.prepareStatement("DELETE FROM impieghi_correnti where mansione <> 'manager' AND inizio < (NOW() - INTERVAL '6 YEAR')").executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 
 	@SuppressWarnings("deprecation")
 	public static void inserisciSaleEProiezioni(int max, int cinema_tot, int film_tot, Connection conn) {
