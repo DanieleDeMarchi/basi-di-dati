@@ -1161,21 +1161,6 @@
       </Temporality>
       <Links>
         <Link>
-          <ParticipantKey>Entity:Film</ParticipantKey>
-          <RelationKey>Relation:Di</RelationKey>
-          <Description></Description>
-          <Role reference="../../../../Relation/Links/Link[2]/Role"/>
-          <Cardinality>
-            <MinSS>0</MinSS>
-            <MaxSS>-1</MaxSS>
-            <MinLS>1</MinLS>
-            <MaxLS>-1</MaxLS>
-            <KEY>0:M [1:M]</KEY>
-            <PROCESSED>false</PROCESSED>
-          </Cardinality>
-          <PROCESSED>false</PROCESSED>
-        </Link>
-        <Link>
           <ParticipantKey>Entity:Proiezione</ParticipantKey>
           <RelationKey>Relation:Di</RelationKey>
           <Description>1:1</Description>
@@ -1186,6 +1171,21 @@
             <MinLS>1</MinLS>
             <MaxLS>1</MaxLS>
             <KEY>1:1 [1:1]</KEY>
+            <PROCESSED>false</PROCESSED>
+          </Cardinality>
+          <PROCESSED>false</PROCESSED>
+        </Link>
+        <Link>
+          <ParticipantKey>Entity:Film</ParticipantKey>
+          <RelationKey>Relation:Di</RelationKey>
+          <Description></Description>
+          <Role reference="../../../../Relation/Links/Link[2]/Role"/>
+          <Cardinality>
+            <MinSS>0</MinSS>
+            <MaxSS>-1</MaxSS>
+            <MinLS>1</MinLS>
+            <MaxLS>-1</MaxLS>
+            <KEY>0:M [1:M]</KEY>
             <PROCESSED>false</PROCESSED>
           </Cardinality>
           <PROCESSED>false</PROCESSED>
@@ -1327,10 +1327,10 @@
       </Temporality>
       <Links>
         <Link>
-          <ParticipantKey>Entity:Film</ParticipantKey>
+          <ParticipantKey>Entity:Attore</ParticipantKey>
           <RelationKey>Relation:ruolo in</RelationKey>
           <Description></Description>
-          <Role reference="../../../../Relation/Links/Link/Role"/>
+          <Role reference="../../../../Relation/Links/Link[2]/Role"/>
           <Cardinality>
             <MinSS>0</MinSS>
             <MaxSS>-1</MaxSS>
@@ -1342,16 +1342,16 @@
           <PROCESSED>false</PROCESSED>
         </Link>
         <Link>
-          <ParticipantKey>Entity:Attore</ParticipantKey>
+          <ParticipantKey>Entity:Film</ParticipantKey>
           <RelationKey>Relation:ruolo in</RelationKey>
           <Description></Description>
-          <Role reference="../../../../Relation/Links/Link[2]/Role"/>
+          <Role reference="../../../../Relation/Links/Link/Role"/>
           <Cardinality>
-            <MinSS>1</MinSS>
+            <MinSS>0</MinSS>
             <MaxSS>-1</MaxSS>
             <MinLS>1</MinLS>
             <MaxLS>-1</MaxLS>
-            <KEY>1:M [1:M]</KEY>
+            <KEY>0:M [1:M]</KEY>
             <PROCESSED>false</PROCESSED>
           </Cardinality>
           <PROCESSED>false</PROCESSED>
